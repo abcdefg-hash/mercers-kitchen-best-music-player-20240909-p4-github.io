@@ -1,11 +1,17 @@
 //Global variables
 //global variables
-void setup() {} //End setup
+void setup() 
+{
+  size(900, 800);
+} //End setup
 //
-void draw() {} //End draw
+void draw() {
+} //End draw
 //
-void mousePressed() {} //End mousePressed
+void mousePressed() {
+} //End mousePressed
 //
-void keyPressed() {} //End keyPressed
+void keyPressed() {
+} //End keyPressed
 //
 // End Main Progam
