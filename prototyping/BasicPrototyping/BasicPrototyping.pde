@@ -22,6 +22,10 @@ void setup()
   String beatYourCompetition = "Beat_Your_Competition";
   String cycles = "Cycles";
   String eureka = "Eureka";
+  song[currentSong] =minim.loadFile("../../Music/Beat_Your_Competition.mp3"); //../../ + musicPathway + cycles + mp3FileName
+  //song[currentSong+=1] =minim.loadFile("../../Music/cycles");
+  //song[currentSong+=1] =minim.loadFile("../../Music/eureka");
+  song[currentSong].play();
 } //End setup
 //
 void draw() {
