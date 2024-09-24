@@ -11,15 +11,26 @@ int numberOfSongs = 8; //Able to Autodetect based on Pathway
 AudioPlayer[] song = new AudioPlayer[numberOfSongs];
 int currentSong = numberOfSongs - numberOfSongs;  //beginning current song as ZERO
 //
+int appWidth, appHeight;
+//
 void setup()
 {
   size(900, 800);
+  appWidth = width;
+  appHeight = height;
+  //variables for any music button
+  musicbuttonX = ;
+  musicbuttonY = ;
+  musicbuttonWidth = appWidth*1/2;
+  musicbuttonHeight = appHeight*1/2;
+  //, , , 
+  
   //
   minim = new Minim(this); //load from data directory, loadFile should also load from project folder
   //
   // Load Music
-  String musicPathway = "Music/";
-  String mp3FileName = ".mp3";
+  //String musicPathway = "Music/";
+  //String mp3FileName = ".mp3";
   //Alphebetical order, same as OS ordering files
   String beatYourCompetition = "Beat_Your_Competition";
   String cycles = "Cycles";
@@ -31,8 +42,8 @@ void setup()
   String theSimplest = "The_Simplest";
   //
   //Add Reading into Array
-  String directory = "../../../" + musicPathway;
-  String file = directory + groove + mp3FileName;
+  //String directory = "../../../" + musicPathway;
+  //String file = directory + groove + mp3FileName;
   song[currentSong] = minim.loadFile( file );
   file = directory + startYourEngines + mp3FileName;
   song[currentSong+=1] = minim.loadFile( file );
@@ -59,6 +70,9 @@ void setup()
   //
   //DIVs
   //rect() based on variables; variables change with program (introduces parameters of a function and TABS)
+  //rect(X,Y,Width,Height)
+  rect( musicbuttonX, musicbuttonY, musicbuttonWidth, musicbuttonHeight );
+  
 } //End setup
 //
 void draw() {
