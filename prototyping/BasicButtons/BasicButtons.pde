@@ -12,6 +12,7 @@ AudioPlayer[] song = new AudioPlayer[numberOfSongs];
 int currentSong = numberOfSongs - numberOfSongs;  //beginning current song as ZERO
 //
 int appWidth, appHeight;
+float musicbuttonX, musicbuttonY, musicbuttonWidth, musicbuttonHeight;
 //
 void setup()
 {
@@ -19,45 +20,47 @@ void setup()
   appWidth = width;
   appHeight = height;
   //variables for any music button
-  musicbuttonX = ;
-  musicbuttonY = ;
   musicbuttonWidth = appWidth*1/2;
   musicbuttonHeight = appHeight*1/2;
-  //, , , 
+  musicbuttonX = musicbuttonWidth - musicbuttonWidth*1/2;
+  musicbuttonY = musicbuttonHeight  - musicbuttonHeight*1/2;
+
+   
   
   //
   minim = new Minim(this); //load from data directory, loadFile should also load from project folder
   //
   // Load Music
-  //String musicPathway = "Music/";
-  //String mp3FileName = ".mp3";
+  String musicPathway = "Music/";
+  String mp3FileName = ".mp3";
   //Alphebetical order, same as OS ordering files
   String beatYourCompetition = "Beat_Your_Competition";
   String cycles = "Cycles";
-  String eureka = "Eureka";
-  String ghostWalk = "Ghost_Walk";
-  String groove = "groove";
+  //String eureka = "Eureka";
+  //String ghostWalk = "Ghost_Walk";
+  //String groove = "groove";
   String newsroom = "Newsroom";
-  String startYourEngines = "Start_Your_Engines";
-  String theSimplest = "The_Simplest";
+  //String startYourEngines = "Start_Your_Engines";
+  //String theSimplest = "The_Simplest";
   //
   //Add Reading into Array
-  //String directory = "../../../" + musicPathway;
-  //String file = directory + groove + mp3FileName;
+  String directory = "../../../" + musicPathway;
+  String file = directory + cycles + mp3FileName;
+  //Alphebetical order, same as OS ordering files
   song[currentSong] = minim.loadFile( file );
-  file = directory + startYourEngines + mp3FileName;
-  song[currentSong+=1] = minim.loadFile( file );
+  //file = directory + startYourEngines + mp3FileName;
+  //song[currentSong+=1] = minim.loadFile( file );
   file = directory + beatYourCompetition + mp3FileName;
   song[currentSong+=1] = minim.loadFile( file );
   file = directory + cycles + mp3FileName;
-  song[currentSong+=1] = minim.loadFile( file );
-  file = directory + eureka + mp3FileName;
-  song[currentSong+=1] = minim.loadFile( file );
-  file = directory + ghostWalk + mp3FileName;
+  //song[currentSong+=1] = minim.loadFile( file );
+  //file = directory + eureka + mp3FileName;
+  //song[currentSong+=1] = minim.loadFile( file );
+  //file = directory + ghostWalk + mp3FileName;
   song[currentSong+=1] = minim.loadFile( file );
   file = directory + newsroom + mp3FileName;
-  song[currentSong+=1] = minim.loadFile( file );
-  file = directory + theSimplest + mp3FileName;
+  //song[currentSong+=1] = minim.loadFile( file );
+  //file = directory + theSimplest + mp3FileName;
   song[currentSong+=1] = minim.loadFile( file );
   //
   currentSong = 0;
@@ -71,7 +74,7 @@ void setup()
   //DIVs
   //rect() based on variables; variables change with program (introduces parameters of a function and TABS)
   //rect(X,Y,Width,Height)
-  rect( musicbuttonX, musicbuttonY, musicbuttonWidth, musicbuttonHeight );
+  //rect(  );
   
 } //End setup
 //
