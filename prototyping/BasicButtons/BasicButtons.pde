@@ -12,7 +12,7 @@ AudioPlayer[] song = new AudioPlayer[numberOfSongs];
 int currentSong = numberOfSongs - numberOfSongs;  //beginning current song as ZERO
 //
 int appWidth, appHeight;
-float musicbuttonX, musicbuttonY, musicbuttonWidth, musicbuttonHeight;
+float musicButtonX, musicButtonY, musicButtonWidth, musicButtonHeight;
 //
 void setup()
 {
@@ -20,13 +20,15 @@ void setup()
   appWidth = width;
   appHeight = height;
   //variables for any music button
-  musicbuttonWidth = appWidth*1/2;
-  musicbuttonHeight = appHeight*1/2;
-  musicbuttonX = musicbuttonWidth - musicbuttonWidth*1/2;
-  musicbuttonY = musicbuttonHeight  - musicbuttonHeight*1/2;
-
-   
-  
+  musicButtonWidth = appWidth*1/2;
+  musicButtonHeight = appHeight*1/2;
+  musicButtonX = musicButtonWidth - musicButtonWidth*1/2;
+  musicButtonY = musicButtonHeight  - musicButtonHeight*1/2;
+  if ( musicButtonWidth >= musicButtonHeight ) {
+  musicButtonWidth = musicButtonHeight;  
+  } else {
+  musicButtonHeight = musicButtonWidth;
+  }
   //
   minim = new Minim(this); //load from data directory, loadFile should also load from project folder
   //
@@ -74,7 +76,7 @@ void setup()
   //DIVs
   //rect() based on variables; variables change with program (introduces parameters of a function and TABS)
   //rect(X,Y,Width,Height)
-  //rect(  );
+  rect( musicButtonX, musicButtonY, musicButtonWidth, musicButtonHeight );
   
 } //End setup
 //
