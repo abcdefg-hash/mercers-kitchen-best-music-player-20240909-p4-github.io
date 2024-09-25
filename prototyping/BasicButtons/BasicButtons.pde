@@ -13,6 +13,7 @@ int currentSong = numberOfSongs - numberOfSongs;  //beginning current song as ZE
 //
 int appWidth, appHeight;
 float musicButtonX, musicButtonY, musicButtonWidth, musicButtonHeight;
+float stopX, stopY, stopWidth, stopHeight;
 //
 void setup()
 {
@@ -24,12 +25,19 @@ void setup()
   musicButtonHeight = appHeight*1/2;
   musicButtonX = musicButtonWidth - musicButtonWidth*1/2;
   musicButtonY = musicButtonHeight  - musicButtonHeight*1/2;
-  if ( musicButtonWidth >= musicButtonHeight ) { //error square isnt i dle
+  if ( musicButtonWidth >= musicButtonHeight ) { //error square isnt in the middle 
   musicButtonWidth = musicButtonHeight;  
   } else {
   musicButtonHeight = musicButtonWidth;
   }
   //
+  //population (variables)
+  float padding = 1.0/4.0;
+  float stopButtonSize = 1.0-(1.0/4.0);
+  stopWidth = musicButtonWidth*stopButtonSize;
+  stopHeight = musicButtonHeight*stopButtonSize;
+  stopX = musicButtonX+padding;
+  stopY = musicButtonY+padding;
   minim = new Minim(this); //load from data directory, loadFile should also load from project folder
   //
   // Load Music
@@ -83,8 +91,8 @@ void setup()
 void draw() {
   background(0);// gray scale: 0255
   rect( musicButtonX, musicButtonY, musicButtonWidth, musicButtonHeight );
-  fill();
-  rect( stopX, stopY, stopWidth, stopHeight);
+  fill(678);
+  rect( stopX, stopY, stopWidth, stopHeight );
 } //End draw
 //
 void mousePressed() {
