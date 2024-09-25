@@ -24,7 +24,7 @@ void setup()
   musicButtonHeight = appHeight*1/2;
   musicButtonX = musicButtonWidth - musicButtonWidth*1/2;
   musicButtonY = musicButtonHeight  - musicButtonHeight*1/2;
-  if ( musicButtonWidth >= musicButtonHeight ) {
+  if ( musicButtonWidth >= musicButtonHeight ) { //error square isnt i dle
   musicButtonWidth = musicButtonHeight;  
   } else {
   musicButtonHeight = musicButtonWidth;
@@ -81,6 +81,10 @@ void setup()
 } //End setup
 //
 void draw() {
+  background(0);// gray scale: 0255
+  rect( musicButtonX, musicButtonY, musicButtonWidth, musicButtonHeight );
+  fill();
+  rect( stopX, stopY, stopWidth, stopHeight);
 } //End draw
 //
 void mousePressed() {
