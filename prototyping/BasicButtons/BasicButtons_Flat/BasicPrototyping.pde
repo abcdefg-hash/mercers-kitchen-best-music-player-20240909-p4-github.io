@@ -11,45 +11,9 @@ int numberOfSongs = 8; //Able to Autodetect based on Pathway
 AudioPlayer[] song = new AudioPlayer[numberOfSongs];
 int currentSong = numberOfSongs - numberOfSongs;  //beginning current song as ZERO
 //
-int appWidth, appHeight;
-float musicButtonDIV_X, musicButtonDIV_Y, musicButtonDIV_Width, musicButtonDIV_Height;
-float stopX, stopY, stopWidth, stopHeight;
-//
 void setup()
 {
-  size(700, 800);
-  appWidth = width;
-  appHeight = height;
-  //Variables for any music button
-  musicButtonDIV_Width = appWidth*1/2;
-  musicButtonDIV_Height = appHeight*1/2;
-  musicButtonDIV_X = musicButtonDIV_Width - musicButtonDIV_Width*1/2;
-  musicButtonDIV_Y = musicButtonDIV_Height- musicButtonDIV_Height*1/2;
-  //Use if statement to change, introduce ternary operator
-  //
-  //Population (Variables)
-  //musicButtonSquareWidth = ;
-  //musicButtonSquareHeight = ;
-  //musicButtonSquareX = ;
-  //musicButtonSquareY = ;
-  //float padding = 1.0/4.0;
-  //float stopButtonSize = 1.0-(1.0/4.0);
-  /*
-  stopWidth = musicButtonDIV_Width*stopButtonSize; //stopButtonSize
-  stopHeight = musicButtonDIV_Height*stopButtonSize; //stopButtonSize
-  stopX = musicButtonDIV_X+padding;
-  stopY = musicButtonDIV_Y+padding;
-  */
-  //
-  /*
-    if ( musicButtonWidth >= musicButtonHeight ) { //error: square does not go in the middle
-    // musicButtonWidth needs to change
-    musicButtonWidth = musicButtonHeight;
-  } else {
-    // musicButtonHeight needs to change
-    musicButtonHeight = musicButtonWidth;
-  }
-  */
+  size(900, 800);
   //
   minim = new Minim(this); //load from data directory, loadFile should also load from project folder
   //
@@ -67,23 +31,39 @@ void setup()
   String theSimplest = "The_Simplest";
   //
   //Add Reading into Array
-  String directory = "../../../" + musicPathway;
+  String directory = "../../" + musicPathway;
+  println ( currentSong, directory );
   String file = directory + groove + mp3FileName;
+  println (file);
   song[currentSong] = minim.loadFile( file );
   file = directory + startYourEngines + mp3FileName;
+  println (file);
   song[currentSong+=1] = minim.loadFile( file );
+  println( currentSong, song[currentSong] );
   file = directory + beatYourCompetition + mp3FileName;
+  println (file);
   song[currentSong+=1] = minim.loadFile( file );
+  println( currentSong, song[currentSong] );
   file = directory + cycles + mp3FileName;
+  println (file);
   song[currentSong+=1] = minim.loadFile( file );
+  println( currentSong, song[currentSong] );
   file = directory + eureka + mp3FileName;
+  println (file);
   song[currentSong+=1] = minim.loadFile( file );
+  println( currentSong, song[currentSong] );
   file = directory + ghostWalk + mp3FileName;
+  println (file);
   song[currentSong+=1] = minim.loadFile( file );
+  println( currentSong, song[currentSong] );
   file = directory + newsroom + mp3FileName;
+  println (file);
   song[currentSong+=1] = minim.loadFile( file );
+  println( currentSong, song[currentSong] );
   file = directory + theSimplest + mp3FileName;
+  println (file);
   song[currentSong+=1] = minim.loadFile( file );
+  println( currentSong, song[currentSong] );
   //
   currentSong = 0;
   //
@@ -95,15 +75,9 @@ void setup()
   //
   //DIVs
   //rect() based on variables; variables change with program (introduces parameters of a function and TABS)
-  //rect( X, Y, Width, Height );
-  rect( musicButtonDIV_X, musicButtonDIV_Y, musicButtonDIV_Width, musicButtonDIV_Height );
 } //End setup
 //
 void draw() {
-  //background(200); // Gray Scale: 0-255
-  //rect( musicButtonSquareX, musicButtonSquareY, musicButtonSquareWidth, musicButtonSquareHeight ); //Square
-  //fill();
-  //rect( stopX, stopY, stopWidth, stopHeight );
 } //End draw
 //
 void mousePressed() {
