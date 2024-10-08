@@ -30,13 +30,13 @@ void setup()
   //
   //variable population
   //
-  if ( musicButtonDIV_Width >= musicButtonDIV_Height ) { // Landscape //error: square does not go in the middle
-    // musicButtonWidth needs to change
+  if ( musicButtonDIV_Width >= musicButtonDIV_Height ) { 
+    // 
     musicButtonSquareWidth = musicButtonDIV_Height ;
     musicButtonSquareHeight = musicButtonDIV_Height ;
-    float padding1 = musicButtonDIV_Width - musicButtonDIV_Height; //working out value needed, with formulae
-    float padding2 = padding1*1/2; ////working out value needed, with formulae
-    musicButtonSquareX = musicButtonDIV_X + padding2 ; //note: minus moves it the wrong way, difficult to see
+    float padding1 = musicButtonDIV_Width - musicButtonDIV_Height; 
+    float padding2 = padding1*1/2; 
+    musicButtonSquareX = musicButtonDIV_X + padding2 ; 
     musicButtonSquareY = musicButtonDIV_Y;
   } else { //Portrait
     // musicButtonHeight needs to change
@@ -47,7 +47,7 @@ void setup()
     musicButtonSquareX = musicButtonDIV_X; //note: minus moves it the wrong way, difficult to see
     musicButtonSquareY = musicButtonDIV_Y + padding2;
   }
-  //See Case Studies and paper folding
+  //
   stopWidth = musicButtonSquareWidth*1/2;
   stopHeight = musicButtonSquareHeight*1/2;
   stopX = musicButtonSquareX + musicButtonSquareWidth*1/4;
@@ -76,13 +76,6 @@ void setup()
   currentSong = 0;
   //
   song[currentSong].play();
-  //Use play(timeStart) & loop(numberOfLoops)
-  //Purpose is 2D Shapes
-  //Introduce keyPressed as keyboard shortcuts
-  //Introduce mousePressed as interaction
-  //
-  //DIVs
-  //rect() based on variables; variables change with program (introduces parameters of a function and TABS)
   //rect( X, Y, Width, Height );
   //rect( musicButtonDIV_X, musicButtonDIV_Y, musicButtonDIV_Width, musicButtonDIV_Height );
 } //End setup
@@ -107,12 +100,6 @@ void draw() {
   //stroke(); //Colour
   //
   rect( stopX, stopY, stopWidth, stopHeight ); //(X, Y, width, height, roundedEdge1, roundedEdge2, roundedEdge3, roundedEdge4, )
-  //noFill();
-  //noStroke();
-  //
-  //Music Buttons Interactions: cascading IFs can become AND Statements
-  //Note: keypressed must have click on screen
-  //song[currentSong].isPlaying();
   //
 } //End draw
 //
