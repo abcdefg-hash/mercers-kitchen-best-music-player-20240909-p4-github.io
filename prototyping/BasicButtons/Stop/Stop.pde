@@ -17,6 +17,9 @@ float musicButtonDIV_X, musicButtonDIV_Y, musicButtonDIV_Width, musicButtonDIV_H
 float musicButtonSquareX, musicButtonSquareY, musicButtonSquareWidth, musicButtonSquareHeight;
 float stopX, stopY, stopWidth, stopHeight;
 //
+color purple=#DB05FF, yellow=#E9FF00;
+color stopButtonHoverOver;
+//
 void setup()
 {
   size(1000, 800);
@@ -30,13 +33,13 @@ void setup()
   //
   //variable population
   //
-  if ( musicButtonDIV_Width >= musicButtonDIV_Height ) { 
-    // 
+  if ( musicButtonDIV_Width >= musicButtonDIV_Height ) {
+    //
     musicButtonSquareWidth = musicButtonDIV_Height ;
     musicButtonSquareHeight = musicButtonDIV_Height ;
-    float padding1 = musicButtonDIV_Width - musicButtonDIV_Height; 
-    float padding2 = padding1*1/2; 
-    musicButtonSquareX = musicButtonDIV_X + padding2 ; 
+    float padding1 = musicButtonDIV_Width - musicButtonDIV_Height;
+    float padding2 = padding1*1/2;
+    musicButtonSquareX = musicButtonDIV_X + padding2 ;
     musicButtonSquareY = musicButtonDIV_Y;
   } else { //Portrait
     // musicButtonHeight needs to change
@@ -81,13 +84,13 @@ void setup()
 } //End setup
 //
 void draw() {
-  //background(200); // Gray Scale: 0-255
+  background(0); // Gray Scale: 0-255
   //
   rect( musicButtonSquareX, musicButtonSquareY, musicButtonSquareWidth, musicButtonSquareHeight );
   //
   /* Note: 3 types of colour, in pairs for hoverover
-   - Day: TBA | TBA (Hoverover)
-   - Dark: TBA | TBA (Hoverover)
+   - Day: TBA | TBA (Hoverover)black button with white backround
+   - Dark: TBA | TBA (Hoverover)white button with black backround
    - Night, no blue: TBA | TBA (Hoverover)
    - Dark Mode is for all the time, how bright the screen is and eye strain
    - API: when does sunrise, when does sunset, is the system time within those hours
@@ -96,11 +99,18 @@ void draw() {
    */
   //if ( day ) {} else if ( dark ) {} else {}
   //
-  //fill(); //Colour
+  if ( mouseX>musicButtonSquareX && mouseX<musicButtonSquareX+musicButtonSquareWidth && mouseY>musicButtonSquareY && mouseY<musicButtonSquareY+musicButtonSquareHeight) {
+    stopButtonHoverOver = yellow;
+  } else {
+    stopButtonHoverOver=purple;
+  }
+  fill(stopButtonHoverOver);
+  //fill(purple); //color for button
+  //fill(yellow);
   //stroke(); //Colour
   //
   rect( stopX, stopY, stopWidth, stopHeight ); //(X, Y, width, height, roundedEdge1, roundedEdge2, roundedEdge3, roundedEdge4, )
-  //
+  fill(255);//padding colour
 } //End draw
 //
 void mousePressed() {
@@ -109,7 +119,7 @@ void mousePressed() {
 } //End mousePressed
 //
 void keyPressed() {
-  //Note: CAP Lock with || 
+  //Note: CAP Lock with ||
   //if ( key==? || key==? ) ;
 } //End keyPressed
 //
