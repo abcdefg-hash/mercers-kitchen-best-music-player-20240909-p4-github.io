@@ -115,14 +115,16 @@ void draw() {
 void mousePressed() {
   //Boolean for Click
   //if() {} else {}
+  if ( mouseX>musicButtonSquareX && mouseX<musicButtonSquareX+musicButtonSquareWidth && mouseY>musicButtonSquareY && mouseY<musicButtonSquareY+musicButtonSquareHeight ) {
+    if ( song[currentSong].isPlaying() ) {
+      song[currentSong].pause(); //single tap
+    } else {
+      song[currentSong].rewind(); //double tap
+    }
+  }
 } //End mousePressed
-  if (  mouseX>musicButtonSquareX && mouseX<musicButtonSquareX+musicButtonSquareWidth && mouseY>musicButtonSquareY && mouseY<musicButtonSquareY+musicButtonSquareHeight ) {
-   if (song[currentSong].isPlaying() ){
-   song[currentSong].pause();//single tap
-   } else {
-  song[currentSong].rewind();//double tap
-   }
- }
+
+
 //
 void keyPressed() {
   //Note: CAP Lock with ||
@@ -132,6 +134,7 @@ void keyPressed() {
   //
   //if ( key=='s' || key=='S' )   song[currentSong].pause();//"stop" button no double tap
 
- //End keyPressed
-//
-// End Main Program
+  //End keyPressed
+  //
+  // End Main Program
+}
