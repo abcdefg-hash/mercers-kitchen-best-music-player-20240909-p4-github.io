@@ -104,23 +104,34 @@ void draw() {
   } else {
     stopButtonHoverOver=purple;
   }
-  fill(stopButtonHoverOver);
-  //fill(purple); //color for button
-  //fill(yellow);
-  //stroke(); //Colour
+  fill(stopButtonHoverOver);//yellow and purple
+  noStroke(); //I think its the line
   //
   rect( stopX, stopY, stopWidth, stopHeight ); //(X, Y, width, height, roundedEdge1, roundedEdge2, roundedEdge3, roundedEdge4, )
   fill(255);//padding colour
+  stroke(1);
 } //End draw
 //
 void mousePressed() {
   //Boolean for Click
   //if() {} else {}
 } //End mousePressed
+  if (  mouseX>musicButtonSquareX && mouseX<musicButtonSquareX+musicButtonSquareWidth && mouseY>musicButtonSquareY && mouseY<musicButtonSquareY+musicButtonSquareHeight ) {
+   if (song[currentSong].isPlaying() ){
+   song[currentSong].pause();//single tap
+   } else {
+  song[currentSong].rewind();//double tap
+   }
+ }
 //
 void keyPressed() {
   //Note: CAP Lock with ||
-  if ( key=='s' || key=='S' )   song[currentSong].play();
-} //End keyPressed
+  // if ( key=='p' || key=='P' )   song[currentSong].play();//"play" button
+  //
+  if ( key=='p' || key=='P' )   song[currentSong].loop(0);//"play" button("loop" button if double tap)
+  //
+  //if ( key=='s' || key=='S' )   song[currentSong].pause();//"stop" button no double tap
+
+ //End keyPressed
 //
 // End Main Program
