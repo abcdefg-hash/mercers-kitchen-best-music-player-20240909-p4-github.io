@@ -17,8 +17,13 @@ float musicButtonDIV_X, musicButtonDIV_Y, musicButtonDIV_Width, musicButtonDIV_H
 float musicButtonSquareX, musicButtonSquareY, musicButtonSquareWidth, musicButtonSquareHeight;
 float stopX, stopY, stopWidth, stopHeight;
 //
-color purple=#DB05FF, yellow=#E9FF00;
+color purple=#DB05FF, yellow=#E9FF00, blue=#0700F5, green=#46FA00, black=#000000, white=#ffffff, orange=#FAA423, red=#F50002;
+color dayForeground=red, dayHoverover=blue, dayBackground=white;
+color darkForeground=yellow, darkHoverover=green, darkBackground=black;
+color nightForeground=green, nightHoverover=orange, nightBackground=black;
 color stopButtonHoverOver;
+//
+Boolean colorDayMode=true, colorDarkMode=false, colorNightMode=false;
 //
 void setup()
 {
@@ -89,13 +94,9 @@ void draw() {
   rect( musicButtonSquareX, musicButtonSquareY, musicButtonSquareWidth, musicButtonSquareHeight );
   //
   /* Note: 3 types of colour, in pairs for hoverover
-   - Day: TBA | TBA (Hoverover)black button with white backround
-   - Dark: TBA | TBA (Hoverover)white button with black backround
-   - Night, no blue: TBA | TBA (Hoverover)
-   - Dark Mode is for all the time, how bright the screen is and eye strain
-   - API: when does sunrise, when does sunset, is the system time within those hours
-   - Night mode is for all the time or just
-   - Note: preferences are hardcoded here but can be choices in CS20
+   day: hoverover: blue #0700F5 background: #FFFFFF  foreground:red #F50002
+   dark: hoverover green #46FA00 background #000000 foreground: yellow #E9FF00
+   night: hoverover orange #FAA423 background #000000 foreground green #46FA00
    */
   //if ( day ) {} else if ( dark ) {} else {}
   //
@@ -137,4 +138,4 @@ void keyPressed() {
   //End keyPressed
   //
   // End Main Program
-}w
+}
