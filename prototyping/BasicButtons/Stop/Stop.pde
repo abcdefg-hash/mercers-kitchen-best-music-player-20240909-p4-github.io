@@ -21,9 +21,10 @@ color purple=#DB05FF, yellow=#E9FF00, blue=#0700F5, green=#46FA00, black=#000000
 color dayForeground=red, dayHoverover=blue, dayBackground=white;
 color darkForeground=yellow, darkHoverover=green, darkBackground=black;
 color nightForeground=green, nightHoverover=orange, nightBackground=black;
+color appColorForeground, appColorHoverover, appColorBackground;
 color stopButtonHoverOver;
 //
-Boolean colorDayMode=true, colorDarkMode=false, colorNightMode=false;
+Boolean colorDarkMode=true;//true or false up to you
 //
 void setup()
 {
@@ -86,6 +87,22 @@ void setup()
   song[currentSong].play();
   //rect( X, Y, Width, Height );
   //rect( musicButtonDIV_X, musicButtonDIV_Y, musicButtonDIV_Width, musicButtonDIV_Height );
+  if ( hour()<=7 || hour()>17 ) {
+    //nightmode
+   appColorForeground = nightForeground;
+   appColorHoverover = nightHoverover;
+   appColorBackground = nightBackground;
+  } else if ( colorDarkMode=true && hour()>=7 || hour()<17 ) {
+    //day mode 
+   appColorForeground = dayForeground;
+   appColorHoverover = dayHoverover;
+   appColorBackground = dayBackground;
+  } else {
+    // dark mode  
+   appColorForeground = darkForeground;
+   appColorHoverover = darkHoverover;
+   appColorBackground = darkBackground;
+  }
 } //End setup
 //
 void draw() {
@@ -101,9 +118,9 @@ void draw() {
   //if ( day ) {} else if ( dark ) {} else {}
   //
   if ( mouseX>musicButtonSquareX && mouseX<musicButtonSquareX+musicButtonSquareWidth && mouseY>musicButtonSquareY && mouseY<musicButtonSquareY+musicButtonSquareHeight) {
-    stopButtonHoverOver = yellow;
+    stopButtonHoverOver = appColorHoverover;//see setup: single line ifs for day, dark and night boleans
   } else {
-    stopButtonHoverOver=purple;
+    stopButtonHoverOver=appColorForeground;//see setup: single line ifs for day, dark and night boleans
   }
   fill(stopButtonHoverOver);//yellow and purple
   noStroke(); //I think its the line
