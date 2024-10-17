@@ -24,7 +24,7 @@ color nightForeground=green, nightHoverover=orange, nightBackground=black;
 color appColorForeground, appColorHoverover, appColorBackground;
 color stopButtonHoverOver;
 //
-Boolean colorDarkMode=true;//true or false up to you
+Boolean colorDarkMode=false;//true or false up to you
 //
 void setup()
 {
@@ -87,12 +87,12 @@ void setup()
   song[currentSong].play();
   //rect( X, Y, Width, Height );
   //rect( musicButtonDIV_X, musicButtonDIV_Y, musicButtonDIV_Width, musicButtonDIV_Height );
-  if ( hour()<=7 || hour()>17 ) {
+  if ( colorDarkMode==false && hour()<=7 || hour()>17 ) {
     //nightmode
    appColorForeground = nightForeground;
    appColorHoverover = nightHoverover;
    appColorBackground = nightBackground;
-  } else if ( colorDarkMode=true && hour()>=7 || hour()<17 ) {
+  } else if ( colorDarkMode==true && hour()>=7 || hour()<17 ) {
     //day mode 
    appColorForeground = dayForeground;
    appColorHoverover = dayHoverover;
@@ -106,7 +106,7 @@ void setup()
 } //End setup
 //
 void draw() {
-  background(0); // Gray Scale: 0-255
+  background(appColorBackground); // Gray Scale: 0-255
   //
   rect( musicButtonSquareX, musicButtonSquareY, musicButtonSquareWidth, musicButtonSquareHeight );
   //
