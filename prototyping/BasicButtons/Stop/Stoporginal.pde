@@ -16,7 +16,6 @@ int appWidth, appHeight;
 float musicButtonDIV_X, musicButtonDIV_Y, musicButtonDIV_Width, musicButtonDIV_Height;
 float musicButtonSquareX, musicButtonSquareY, musicButtonSquareWidth, musicButtonSquareHeight;
 float stopX, stopY, stopWidth, stopHeight;
-float playButton1X,playButton1Y,playButton2X,playButton2Y,playButton3X,playButton3Y;
 //
 color purple=#DB05FF, yellow=#E9FF00, blue=#0700F5, green=#46FA00, black=#000000, white=#ffffff, orange=#FAA423, red=#F50002;
 color dayForeground=red, dayHoverover=blue, dayBackground=white;
@@ -25,7 +24,7 @@ color nightForeground=green, nightHoverover=orange, nightBackground=black;
 color appColorForeground, appColorHoverover, appColorBackground;
 color stopButtonHoverOver;
 //
-Boolean colorDarkMode=true;//true or false up to you
+Boolean colorDarkMode=false;//true or false up to you
 //
 void setup()
 {
@@ -56,19 +55,12 @@ void setup()
     float padding2 = padding1*1/2; ////working out value needed, with formulae
     musicButtonSquareX = musicButtonDIV_X; //note: minus moves it the wrong way, difficult to see
     musicButtonSquareY = musicButtonDIV_Y + padding2;
-
   }
   //
   stopWidth = musicButtonSquareWidth*1/2;
   stopHeight = musicButtonSquareHeight*1/2;
   stopX = musicButtonSquareX + musicButtonSquareWidth*1/4;
   stopY = musicButtonSquareY + musicButtonSquareHeight*1/4;
-    playButton1X = stopX = musicButtonSquareX + musicButtonSquareWidth*1/4;
-    playButton1Y = stopY = musicButtonSquareY + musicButtonSquareHeight*1/4;
-    playButton2X = stopX = musicButtonSquareX + musicButtonSquareWidth*3/4;
-    playButton2Y = stopY = musicButtonSquareY + musicButtonSquareHeight*1/2;
-    playButton3X = stopX = musicButtonSquareX + musicButtonSquareWidth*1/4;
-    playButton3Y = stopY = musicButtonSquareY + musicButtonSquareHeight*3/4;
   //
   minim = new Minim(this); //load from data directory, loadFile should also load from project folder
   //
@@ -92,15 +84,15 @@ void setup()
   //
   currentSong = 0;
   //
-  //song[currentSong].play();
+  song[currentSong].play();
   //rect( X, Y, Width, Height );
   //rect( musicButtonDIV_X, musicButtonDIV_Y, musicButtonDIV_Width, musicButtonDIV_Height );
-  if ( hour()<=7 || hour()>17 ) {
+  if ( colorDarkMode==false && hour()<=7 || hour()>17 ) {
     //nightmode
    appColorForeground = nightForeground;
    appColorHoverover = nightHoverover;
    appColorBackground = nightBackground;
-  } else if ( colorDarkMode=true && hour()>=7 || hour()<17 ) {
+  } else if ( colorDarkMode==true && hour()>=7 || hour()<17 ) {
     //day mode 
    appColorForeground = dayForeground;
    appColorHoverover = dayHoverover;
@@ -114,7 +106,7 @@ void setup()
 } //End setup
 //
 void draw() {
-  background(0); // Gray Scale: 0-255
+  background(appColorBackground); // Gray Scale: 0-255
   //
   rect( musicButtonSquareX, musicButtonSquareY, musicButtonSquareWidth, musicButtonSquareHeight );
   //
@@ -133,7 +125,7 @@ void draw() {
   fill(stopButtonHoverOver);//yellow and purple
   noStroke(); //I think its the line
   //
-  triangle(playButton1X,playButton1Y,playButton2X,playButton2Y,playButton3X,playButton3Y);
+  rect( stopX, stopY, stopWidth, stopHeight ); //(X, Y, width, height, roundedEdge1, roundedEdge2, roundedEdge3, roundedEdge4, )
   fill(255);//padding colour
   stroke(1);
 } //End draw
@@ -142,6 +134,25 @@ void mousePressed() {
   //Boolean for Click
   //if() {} else {}
   if ( mouseX>musicButtonSquareX && mouseX<musicButtonSquareX+musicButtonSquareWidth && mouseY>musicButtonSquareY && mouseY<musicButtonSquareY+musicButtonSquareHeight ) {
-song[currentSong].loop(0);//"play" button("loop" button if double tap)
+    if ( song[currentSong].isPlaying() ) {
+      song[currentSong].pause(); //single tap
+    } else {
+      song[currentSong].rewind(); //double tap
+    }
   }
 } //End mousePressed
+
+
+//
+void keyPressed() {
+  //Note: CAP Lock with ||
+  // if ( key=='p' || key=='P' )   song[currentSong].play();//"play" button
+  //
+  if ( key=='p' || key=='P' )   song[currentSong].loop(0);//"play" button("loop" button if double tap)
+  //
+  //if ( key=='s' || key=='S' )   song[currentSong].pause();//"stop" button no double tap
+
+  //End keyPressed
+  //
+  // End Main Program
+}
