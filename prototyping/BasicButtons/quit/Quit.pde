@@ -23,7 +23,7 @@ color dayForeground=red, dayHoverover=blue, dayBackground=white;
 color darkForeground=yellow, darkHoverover=green, darkBackground=black;
 color nightForeground=green, nightHoverover=orange, nightBackground=black;
 color appColorForeground, appColorHoverover, appColorBackground;
-color stopButtonHoverOver,quitbuttonX1,quitbuttonY1,quitbuttonX2,quitbuttonY2
+color stopButtonHoverOver;
 //
 Boolean colorDarkMode=false;//true or false up to you
 //
