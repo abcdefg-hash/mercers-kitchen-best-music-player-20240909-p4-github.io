@@ -16,13 +16,15 @@ int appWidth, appHeight;
 float musicButtonDIV_X, musicButtonDIV_Y, musicButtonDIV_Width, musicButtonDIV_Height;
 float musicButtonSquareX, musicButtonSquareY, musicButtonSquareWidth, musicButtonSquareHeight;
 float stopX, stopY, stopWidth, stopHeight;
+float quitWeightThickness, quitButtonX1, quitButtonY1, quitButtonX2, quitButtonY2;
 //
 color purple=#DB05FF, yellow=#E9FF00, blue=#0700F5, green=#46FA00, black=#000000, white=#ffffff, orange=#FAA423, red=#F50002;
 color dayForeground=red, dayHoverover=blue, dayBackground=white;
 color darkForeground=yellow, darkHoverover=green, darkBackground=black;
 color nightForeground=green, nightHoverover=orange, nightBackground=black;
 color appColorForeground, appColorHoverover, appColorBackground;
-color stopButtonHoverOver;
+color stopButtonHoverOver, quitButtonLineColor;
+
 //
 Boolean colorDarkMode=false;//true or false up to you
 //
@@ -61,6 +63,16 @@ void setup()
   stopHeight = musicButtonSquareHeight*1/2;
   stopX = musicButtonSquareX + musicButtonSquareWidth*1/4;
   stopY = musicButtonSquareY + musicButtonSquareHeight*1/4;
+  quitStrokeThickness = ( musicButtonSquareWidth / musicButtonSquareWidth ) + musicButtonSquareWidth*1/4*1/2;
+  quitButtonX1 = stopX;
+  quitButtonY1 = stopY;
+  quitButtonX2 = stopX+stopWidth;
+  quitButtonY2 = stopY+stopHeight;
+  quitButtonX3 = ;
+  quitButtonY3 = ; 
+  quitButtonX4 = ;
+  quitButtonY4 = ;
+
   //
   minim = new Minim(this); //load from data directory, loadFile should also load from project folder
   //
@@ -119,15 +131,24 @@ void draw() {
   //
   if ( mouseX>musicButtonSquareX && mouseX<musicButtonSquareX+musicButtonSquareWidth && mouseY>musicButtonSquareY && mouseY<musicButtonSquareY+musicButtonSquareHeight) {
     stopButtonHoverOver = appColorHoverover;//see setup: single line ifs for day, dark and night boleans
+    quitButtonLineColor = appColorHoverover;
   } else {
     stopButtonHoverOver=appColorForeground;//see setup: single line ifs for day, dark and night boleans
+    quitButtonLineColor
   }
   fill(stopButtonHoverOver);//yellow and purple
   noStroke(); //I think its the line
   //
-  rect( stopX, stopY, stopWidth, stopHeight ); //(X, Y, width, height, roundedEdge1, roundedEdge2, roundedEdge3, roundedEdge4, )
-  fill(255);//padding colour
-  stroke(1);
+  //rect( stopX, stopY, stopWidth, stopHeight ); //(X, Y, width, height, roundedEdge1, roundedEdge2, roundedEdge3, roundedEdge4, )
+  fill(255); //white to gray
+  stroke(1); //line
+  //
+  //
+  stroke(quitButtonLineColor);
+  strokeWeight(quitStrokeWeight);
+  line( quitButtonX1, quitButtonY1, quitButtonX2, quitButtonY2 );
+  //line( quitButtonX3, quitButtonY3, quitButtonX4, quitButtonY4 );
+  fill(255); //noFill(); //White in Gray Scale
 } //End draw
 //
 void mousePressed() {
