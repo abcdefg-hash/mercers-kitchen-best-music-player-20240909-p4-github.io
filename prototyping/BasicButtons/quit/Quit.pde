@@ -16,9 +16,11 @@ int appWidth, appHeight;
 float musicButtonDIV_X, musicButtonDIV_Y, musicButtonDIV_Width, musicButtonDIV_Height;
 float musicButtonSquareX, musicButtonSquareY, musicButtonSquareWidth, musicButtonSquareHeight;
 float stopX, stopY, stopWidth, stopHeight;
-float quitLineWeight
+float quitStrokeWeight,quitButtonX1, quitButtonY1, quitButtonX2, quitButtonY2;
+float quitButtonX3, quitButtonY3, quitButtonX4, quitButtonY4;
+float quitLineWeight;
 //
-color purple=#DB05FF, yellow=#E9FF00, blue=#0700F5, green=#46FA00, black=#000000, white=#ffffff, orange=#FAA423, red=#F50002;
+color purple=#DB05FF, yellow=#E9FF00, blue=#0700F5, green=#46FA00, black=#000000, white=#FFFFFF, orange=#FAA423, red=#F50002;
 color dayForeground=red, dayHoverover=blue, dayBackground=white;
 color darkForeground=yellow, darkHoverover=green, darkBackground=black;
 color nightForeground=green, nightHoverover=orange, nightBackground=black;
@@ -63,14 +65,14 @@ void setup()
   stopX = musicButtonSquareX + musicButtonSquareWidth*1/4;
   stopY = musicButtonSquareY + musicButtonSquareHeight*1/4;
   quitLineWeight = (musicButtonSquareWidth/musicButtonSquareWidth) + musicButtonSquareWidth*1/8;
-  quitbuttonX1 = stopX;
-  quitbuttonY1 = stopY;
-  quitbuttonX2 = stopX + stopWidth;
-  quitbuttonY2 = stopY + stopHeight;
-  quitbuttonX3 = stopX;
-  quitbuttonY3 = stopY;
-  quitbuttonX4 = stopX;
-  quitbuttonY4 = stopY;
+  quitButtonX1 = stopX;
+  quitButtonY1 = stopY;
+  quitButtonX2 = stopX+stopWidth;
+  quitButtonY2 = stopY+stopHeight;
+  quitButtonX3 = quitButtonX2;
+  quitButtonY3 = quitButtonY1; 
+  quitButtonX4 = quitButtonX1;
+  quitButtonY4 = quitButtonY2;
   //
   minim = new Minim(this); //load from data directory, loadFile should also load from project folder
   //
@@ -136,8 +138,8 @@ void draw() {
   //stroke(); //I think its the line
   //
   strokeWeight(quitStrokeWeight);
-  line(quitbuttonX1,quitbuttonY1,quitbuttonX2,quitbuttonY2);
-  line(quitbuttonX3,quitbuttonY3,quitbuttonX4,quitbuttonY4);
+  line(quitButtonX1,quitButtonY1,quitButtonX2,quitButtonY2);
+  line(quitButtonX3,quitButtonY3,quitButtonX4,quitButtonY4);
   //rect( stopX, stopY, stopWidth, stopHeight ); //(X, Y, width, height, roundedEdge1, roundedEdge2, roundedEdge3, roundedEdge4, )
   fill(255);//padding colour
   //noStroke(1);
