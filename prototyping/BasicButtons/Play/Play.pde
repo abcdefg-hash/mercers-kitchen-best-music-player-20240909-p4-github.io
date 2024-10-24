@@ -16,7 +16,7 @@ int appWidth, appHeight;
 float musicButtonDIV_X, musicButtonDIV_Y, musicButtonDIV_Width, musicButtonDIV_Height;
 float musicButtonSquareX, musicButtonSquareY, musicButtonSquareWidth, musicButtonSquareHeight;
 float stopX, stopY, stopWidth, stopHeight;
-float playButton1X,playButton1Y,playButton2X,playButton2Y,playButton3X,playButton3Y;
+float playButton1X, playButton1Y, playButton2X, playButton2Y, playButton3X, playButton3Y;
 //
 color purple=#DB05FF, yellow=#E9FF00, blue=#0700F5, green=#46FA00, black=#000000, white=#ffffff, orange=#FAA423, red=#F50002;
 color dayForeground=red, dayHoverover=blue, dayBackground=white;
@@ -56,19 +56,18 @@ void setup()
     float padding2 = padding1*1/2; ////working out value needed, with formulae
     musicButtonSquareX = musicButtonDIV_X; //note: minus moves it the wrong way, difficult to see
     musicButtonSquareY = musicButtonDIV_Y + padding2;
-
   }
   //
   stopWidth = musicButtonSquareWidth*1/2;
   stopHeight = musicButtonSquareHeight*1/2;
   stopX = musicButtonSquareX + musicButtonSquareWidth*1/4;
   stopY = musicButtonSquareY + musicButtonSquareHeight*1/4;
-    playButton1X = stopX = musicButtonSquareX + musicButtonSquareWidth*1/4;
-    playButton1Y = stopY = musicButtonSquareY + musicButtonSquareHeight*1/4;
-    playButton2X = stopX = musicButtonSquareX + musicButtonSquareWidth*3/4;
-    playButton2Y = stopY = musicButtonSquareY + musicButtonSquareHeight*1/2;
-    playButton3X = stopX = musicButtonSquareX + musicButtonSquareWidth*1/4;
-    playButton3Y = stopY = musicButtonSquareY + musicButtonSquareHeight*3/4;
+  playButton1X = stopX = musicButtonSquareX + musicButtonSquareWidth*1/4;
+  playButton1Y = stopY = musicButtonSquareY + musicButtonSquareHeight*1/4;
+  playButton2X = stopX = musicButtonSquareX + musicButtonSquareWidth*3/4;
+  playButton2Y = stopY = musicButtonSquareY + musicButtonSquareHeight*1/2;
+  playButton3X = stopX = musicButtonSquareX + musicButtonSquareWidth*1/4;
+  playButton3Y = stopY = musicButtonSquareY + musicButtonSquareHeight*3/4;
   //
   minim = new Minim(this); //load from data directory, loadFile should also load from project folder
   //
@@ -97,19 +96,19 @@ void setup()
   //rect( musicButtonDIV_X, musicButtonDIV_Y, musicButtonDIV_Width, musicButtonDIV_Height );
   if ( hour()<=7 || hour()>17 ) {
     //nightmode
-   appColorForeground = nightForeground;
-   appColorHoverover = nightHoverover;
-   appColorBackground = nightBackground;
+    appColorForeground = nightForeground;
+    appColorHoverover = nightHoverover;
+    appColorBackground = nightBackground;
   } else if ( colorDarkMode=true && hour()>=7 || hour()<17 ) {
-    //day mode 
-   appColorForeground = dayForeground;
-   appColorHoverover = dayHoverover;
-   appColorBackground = dayBackground;
+    //day mode
+    appColorForeground = dayForeground;
+    appColorHoverover = dayHoverover;
+    appColorBackground = dayBackground;
   } else {
-    // dark mode  
-   appColorForeground = darkForeground;
-   appColorHoverover = darkHoverover;
-   appColorBackground = darkBackground;
+    // dark mode
+    appColorForeground = darkForeground;
+    appColorHoverover = darkHoverover;
+    appColorBackground = darkBackground;
   }
 } //End setup
 //
@@ -133,7 +132,7 @@ void draw() {
   fill(stopButtonHoverOver);//yellow and purple
   noStroke(); //I think its the line
   //
-  triangle(playButton1X,playButton1Y,playButton2X,playButton2Y,playButton3X,playButton3Y);
+  triangle(playButton1X, playButton1Y, playButton2X, playButton2Y, playButton3X, playButton3Y);
   fill(255);//padding colour
   stroke(1);
 } //End draw
@@ -142,17 +141,69 @@ void mousePressed() {
   //Boolean for Click
   //if() {} else {}
   if ( mouseX>musicButtonSquareX && mouseX<musicButtonSquareX+musicButtonSquareWidth && mouseY>musicButtonSquareY && mouseY<musicButtonSquareY+musicButtonSquareHeight ) {
-song[currentSong].loop(0);//"play" button("loop" button if double tap)
+    song[currentSong].loop(0);//"play" button("loop" button if double tap)
   }
 } //End mousePressed
 
 
 //
 void keyPressed() {
+  if ( key=='P' || key=='p' ) song[currentSong].play(); //press once play and rewind for second
+  if ( key=='S' | key=='s' ) {
+    if ( song[currentSong].isPlaying() ) {
+      song[currentSong].pause(); //single tap pause
+    } else {
+      song[currentSong].rewind(); //double tap rewind
+    }
+  }
+  if ( key=='L' || key=='l' ) song[currentSong].loop(1); // plays twice
+  if ( key=='K' || key=='k' ) song[currentSong].loop(); // infinte(0 or -1 or blank)
+  if ( key=='F' || key=='f' ) song[currentSong].skip( 10*1000 ); // Fast Forward, Rewind, & Play Again //Parameter MILISECONDS
+  if ( key=='R' || key=='r' ) song[currentSong].skip( -10*1000 ); // Fast Reverse
+  if ( key=='M' || key=='m' ) { //mute
+    //
+    if ( song[currentSong].isMuted()  ) {
+      song[currentSong].unmute();
+    } else {
+      song[currentSong].mute();
+    }
+  }
+  if ( key=='O' || key=='o' ) { //pause
+    //
+    if ( song[currentSong].isPlaying() ) {
+      song[currentSong].pause();
+    } else {
+      song[currentSong].play();
+    }
+  }
+  if ( key==CODED || keyCode==ESC ) exit(); // quit up
+  if ( key=='Q' || key=='q' ) exit(); // up
+  //
+  if ( key=='N' || key=='n' ) ; // next
+  if (song[currentSong].isPlaying()) {
+    song[currentSong].pause();
+    song[currentSong].rewind();
+    //
+    if (currentSong==2) {
+      currentSong = 0;
+    } else {
+      currentSong++;
+    }
+    println("the current song is", currentSong);
+    song[currentSong].play();
+  } else {
+    println("the current song is", currentSong);
+  }
+
+
+
+
+  //if ( key=='' || key=='' ) ; // Shuffle - PLAY (Random)
+  //if ( key=='' || key=='' ) ; // Play-Pause-STOP
   //Note: CAP Lock with ||
   // if ( key=='p' || key=='P' )   song[currentSong].play();//"play" button
   //
-  if ( key=='p' || key=='P' )   song[currentSong].loop(0);//"play" button("loop" button if double tap)
+  //if ( key=='p' || key=='P' )   song[currentSong].loop(0);//"play" button("loop" button if double tap)
   //
   //if ( key=='s' || key=='S' )   song[currentSong].pause();//"stop" button no double tap
 
